@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c60b85e6e431b4a8303c4f243dd9bd, type: 3}
+  m_Name: Player Config
+  m_EditorClassIdentifier: 
+  Player: {fileID: 6236216024778814754, guid: b19a9040abfcc214b80e6ebac5a365c8, type: 3}
+  Health: 3
+  MaxRotAngle: 0
+  Bullet: {fileID: 5668940726820599236, guid: f5d28b9cc490c7143b3a2d7f287e1e62, type: 3}
+  ShootForce: 100

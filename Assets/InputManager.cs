@@ -7,10 +7,13 @@ public class InputManager : IInitializable, IDisposable, ITickable
     private PlayerControlls _playerControlls;
 
     public Vector2 KeyboardDelta = Vector2.zero;
+    public Vector2 MousePos = Vector2.zero;
     private bool _keyboardMoveInput = true;
     private bool _mouseMoveInput = true;
-    
+
     public Action<Vector2> OnKeyboardInput;
+    public Action<Vector2> OnMouseInput;
+    public Action OnMouseClick;
 
     [Inject]
     public InputManager()
@@ -19,8 +22,10 @@ public class InputManager : IInitializable, IDisposable, ITickable
         _playerControlls = new PlayerControlls();
 
         _playerControlls.Movement.MovementVector.performed += _ => _keyboardMoveInput = true;
-        //        _playerControlls.Movement.MovementVector.canceled += _ => DisableKeyboardMovement();
-        _playerControlls.Movement.MouseClick.performed += _ => Debug.Log("XDDDff");
+        _playerControlls.Movement.MovementVector.canceled += _ => _keyboardMoveInput = false;
+        _playerControlls.Movement.MousePosition.performed += _ => _mouseMoveInput = true;
+        _playerControlls.Movement.MousePosition.canceled += _ => _mouseMoveInput = false;
+        _playerControlls.Movement.MouseClick.performed += _ => OnMouseClick?.Invoke();
         Debug.Log("Input manager Initiated");
 
     }
@@ -55,6 +60,11 @@ public class InputManager : IInitializable, IDisposable, ITickable
         {
             KeyboardDelta = _playerControlls.Movement.MovementVector.ReadValue<Vector2>();
             OnKeyboardInput?.Invoke(KeyboardDelta);
+        }
+        if (_mouseMoveInput == true)
+        {
+            MousePos = _playerControlls.Movement.MousePosition.ReadValue<Vector2>();
+            OnMouseInput?.Invoke(MousePos);
         }
     }
 }

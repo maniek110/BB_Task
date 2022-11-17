@@ -5,10 +5,11 @@ using Zenject;
 
 public class PlayerInstaller : MonoInstaller
 {
-    public GameObject PlayerObject;
+    public PlayerConfig PlayerConfig;
+    public Transform StartingPosition;
     public override void InstallBindings()
     {
-        Container.Bind<PlayerController>().AsSingle().WithArguments(PlayerObject).NonLazy();
+        Container.Bind<PlayerController>().AsSingle().WithArguments(PlayerConfig,StartingPosition).NonLazy();
     }
 
 }

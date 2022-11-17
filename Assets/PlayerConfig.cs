@@ -9,4 +9,6 @@ public class PlayerConfig : ScriptableObject
     public GameObject Player;
     public int Health;
     public int MaxRotAngle;
+    public GameObject Bullet;
+    public float ShootForce;
 }
